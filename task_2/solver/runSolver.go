@@ -42,7 +42,7 @@ func RunSolver(filePath string) error {
 		msg := fmt.Sprintf("path to files: %s does not exist", filePath)
 		return errHandler(err, msg)
 	}
-	// ensuring it's a directory
+	// ensure it's a directory
 	if !info.IsDir() {
 		return fmt.Errorf("path %s is not a directory", filePath)
 	}
@@ -53,7 +53,7 @@ func RunSolver(filePath string) error {
 		return errHandler(err, msg)
 	}
 	defer f.Close()
-
+	// read json file and process
 	files, _ := f.ReadDir(0)
 	for _, v := range files {
 		if strings.HasSuffix(v.Name(), fileExt) {
@@ -67,6 +67,7 @@ func RunSolver(filePath string) error {
 			jsonFile.Close()
 			roomPath, rooms, solved := solve(data)
 			printOutput(roomPath, rooms, jsonFile.Name(), solved)
+			fmt.Printf("\n\n")
 		}
 	}
 	return nil

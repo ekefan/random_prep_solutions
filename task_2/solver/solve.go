@@ -17,6 +17,8 @@ func solve(d entryFormat) ([]int, map[int]Room, bool) {
 	}
 
 	currentId := startingId
+
+	// loop until all objects have been found
 	for objectFoundCount > 0 {
 		roomEntered[currentId] = true
 		roomPath = append(roomPath, currentId)
